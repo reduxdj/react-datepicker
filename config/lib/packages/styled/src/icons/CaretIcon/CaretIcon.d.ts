@@ -1,0 +1,6 @@
+/// <reference types="react" />
+interface Props extends IconProps {
+  direction?: 'up' | 'down' | 'left' | 'right'
+}
+declare function CaretIcon({height, width, color, direction, className}: Props): JSX.Element
+export default CaretIcon

@@ -133,5 +133,9 @@
   "resolutions": {
     "@types/react": "^16.9.11"
   },
-  "name": "react-datepicker"
+  "name": "react-datepicker",
+  "dependencies": {
+    "@types/styled-components": "^4.4.0",
+    "styled-components": "^4.4.1"
+  }
 }
