@@ -388,22 +388,41 @@ function toInteger(e) {
   var t = Number(e)
   return isNaN(t) ? t : t < 0 ? Math.ceil(t) : Math.floor(t)
 }
+// function toDate(e) {
+//   if (arguments.length < 1)
+//     throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+//   var t = Object.prototype.toString.call(e)
+//   return e instanceof Date || ('object' == typeof e && '[object Date]' === t)
+//     ? new Date(e.getTime())
+//     : 'number' == typeof e || '[object Number]' === t
+//     ? new Date(e)
+//     : (('string' != typeof e && '[object String]' !== t) ||
+//         'undefined' == typeof console ||
+//         (console.warn(
+//           "Starting with v2.0.0-beta.1 date-fns doesn't accept strings as arguments. Please use `parseISO` to parse strings. See: https://git.io/fjule",
+//         ),
+//         console.warn(new Error().stack)),
+//       new Date(NaN))
+// }
+
 function toDate(e) {
   if (arguments.length < 1)
     throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  var t = Object.prototype.toString.call(e)
-  return e instanceof Date || ('object' == typeof e && '[object Date]' === t)
-    ? new Date(e.getTime())
-    : 'number' == typeof e || '[object Number]' === t
-    ? new Date(e)
-    : (('string' != typeof e && '[object String]' !== t) ||
-        'undefined' == typeof console ||
-        (console.warn(
-          "Starting with v2.0.0-beta.1 date-fns doesn't accept strings as arguments. Please use `parseISO` to parse strings. See: https://git.io/fjule",
-        ),
-        console.warn(new Error().stack)),
-      new Date(NaN))
+  return new Date(e)
+  //   var t = Object.prototype.toString.call(e)
+  //   return e instanceof Date || ('object' == typeof e && '[object Date]' === t)
+  //     ? new Date(e.getTime())
+  //     : 'number' == typeof e || '[object Number]' === t
+  //     ? new Date(e)
+  //     : (('string' != typeof e && '[object String]' !== t) ||
+  //         'undefined' == typeof console ||
+  //         (console.warn(
+  //           "Starting with v2.0.0-beta.1 date-fns doesn't accept strings as arguments. Please use `parseISO` to parse strings. See: https://git.io/fjule",
+  //         ),
+  //         console.warn(new Error().stack)),
+  //       new Date(NaN))
 }
+
 function addMilliseconds(e, t) {
   if (arguments.length < 2)
     throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
@@ -2556,10 +2575,10 @@ function canSelectRange(e) {
           return e ? !n(t) : e
         }, !0)
       : !(!t || !r || i) &&
-        (!isBefore(r, addDays(t, a - 1)) &&
-          eachDayOfInterval({start: t, end: r}).reduce(function(e, t) {
-            return e ? !n(t) : e
-          }, !0)))
+        !isBefore(r, addDays(t, a - 1)) &&
+        eachDayOfInterval({start: t, end: r}).reduce(function(e, t) {
+          return e ? !n(t) : e
+        }, !0))
   )
 }
 function isDateHovered(e) {
